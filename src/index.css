@@ -1,0 +1,70 @@
+@import './styles/theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-canvas text-chalk font-body antialiased transition-colors duration-150;
+  }
+  ::selection {
+    @apply bg-marker/30 text-chalk;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-marker));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .sketch-border {
+    background-image: repeating-linear-gradient(
+      90deg,
+      #8b8790 0,
+      #8b8790 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-marker px-5 py-2.5
+      font-display text-sm font-medium text-chalk transition-colors duration-150
+      hover:bg-markerDim focus-visible:outline-marker disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-panelBorder
+      bg-panel px-5 py-2.5 font-display text-sm font-medium text-chalk transition-colors duration-150
+      hover:border-graphite disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .input-field {
+    @apply w-full rounded-md border border-panelBorder bg-surface px-3.5 py-2.5 text-sm text-chalk
+      placeholder:text-graphite/70 focus:border-marker focus:outline-none transition-colors duration-150;
+  }
+
+  .card {
+    @apply rounded-lg border border-panelBorder bg-panel shadow-panel;
+  }
+}
+
+@layer utilities {
+  .grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: theme('backgroundImage.grain');
+    opacity: 0.5;
+  }
+  :root[data-theme='light'] .grain::before {
+    /* the paper-grain texture reads nicely on dark; on light it's just noise */
+    display: none;
+  }
+}

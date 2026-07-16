@@ -1,0 +1,47 @@
+/**
+ * Theme tokens.
+ *
+ * The rest of the app (Tailwind config + components) only ever references
+ * the semantic names below (canvas, surface, panel, chalk, marker, ...).
+ * Switching themes is just switching which block of variables applies —
+ * no component classes change between light and dark.
+ *
+ * data-theme is set on <html> synchronously by the inline script in
+ * index.html (before first paint) and kept in sync afterwards by
+ * ThemeContext.
+ */
+
+:root[data-theme='light'] {
+  /* Warm, low-glare off-whites instead of pure #fff — reads as
+     "professional paper", not "inverted dark mode".
+     Values are R G B triplets (no rgb(), no commas) so Tailwind's
+     rgb(var(--x) / <alpha-value>) pattern can apply opacity modifiers
+     like bg-marker/30. */
+  --color-canvas: 248 246 242;
+  --color-surface: 255 255 255;
+  --color-panel: 255 255 255;
+  --color-panel-border: 227 222 212;
+  --color-chalk: 32 30 36; /* primary text */
+  --color-graphite: 107 102 112; /* secondary text */
+  --color-marker: 207 69 32; /* deepened for AA contrast on light bg */
+  --color-marker-dim: 168 55 26;
+  --color-sage: 63 92 77;
+  --color-sage-bright: 79 117 99;
+  --color-danger: 179 55 44;
+  --shadow-panel: 0 1px 2px rgba(32, 30, 36, 0.04), 0 1px 8px rgba(32, 30, 36, 0.04);
+}
+
+:root[data-theme='dark'] {
+  --color-canvas: 14 13 16;
+  --color-surface: 26 24 29;
+  --color-panel: 42 40 48;
+  --color-panel-border: 58 55 64;
+  --color-chalk: 245 242 234;
+  --color-graphite: 139 135 144;
+  --color-marker: 232 84 42;
+  --color-marker-dim: 184 67 31;
+  --color-sage: 74 107 90;
+  --color-sage-bright: 107 144 128;
+  --color-danger: 196 69 58;
+  --shadow-panel: none;
+}
